@@ -15,7 +15,6 @@ DB_NAME = 'quiz_bot.db'
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher()
 
-DICT_DATA = 'data/quiz_data.json'
 
 quiz_data = [
     {
@@ -202,7 +201,7 @@ async def wrong_answer(callback: types.CallbackQuery):
     if current_question_index < len(quiz_data):
         await get_question(callback.message, callback.from_user.id)
     else:
-        await callback.message.answer("Это был последний вопрос. Квиз завершен!\nВаш результат: {current_score} правильных ответов")
+        await callback.message.answer(f"Это был последний вопрос. Квиз завершен!\nВаш результат: {current_score} правильных ответов")
 
 @dp.message(Command("help"))
 async def cmd_start(message: types.Message):
